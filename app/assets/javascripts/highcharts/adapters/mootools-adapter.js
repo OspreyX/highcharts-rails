@@ -1,316 +1,153 @@
-/**
- * @license Highcharts JS v3.0.10 (2014-03-10)
- * MooTools adapter
- *
- * (c) 2010-2014 Torstein Honsi
- *
- * License: www.highcharts.com/license
- */
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
+    <head>
+        <base href="http://www.highcharts.com/" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="robots" content="index, follow" />
+        <title>code.highcharts.com</title>
+        <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" href="/templates/yoo_symphony/css/template.css" type="text/css" />
+        <link rel="stylesheet" href="/templates/yoo_symphony/css/variations/brown.css" type="text/css" />
+        <link rel="stylesheet" href="/templates/yoo_symphony/css/custom.css" type="text/css" />
+        <style type="text/css">
+            body {
+                margin: 10px
+            }
+            h2 {
+                color: black;
+                background: #DDD;
+                padding: 0.3em;
+            }
+        </style>
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $(function() {
+                $('li').each(function() {
+                    var $li = $(this),
+                        url = $li.html();
+                    $li.html("<a href='"+ url + "'>" + url + "</a>");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1 style="color:red">Error on Highcharts file service</h1>
+        <h4>Please check the url you used with the patterns listed here.</h4>
 
-// JSLint options:
-/*global Fx, $, $extend, $each, $merge, Events, Event, DOMEvent */
+        <h2>Highcharts</h2>
+        <h4>Latest stable</h4>
+        <p>The latest stable version of Highcharts is served from the root of code.highcharts.com:</p>
+        <ul>
+            <li>http://code.highcharts.com/highcharts.js</li>
+            <li>http://code.highcharts.com/highcharts.src.js</li>
+            <li>http://code.highcharts.com/highcharts-more.js</li>
+            <li>http://code.highcharts.com/highcharts-more.src.js</li>
+            <li>http://code.highcharts.com/modules/exporting.js</li>
+            <li>http://code.highcharts.com/modules/exporting.src.js</li>
+            <li>http://code.highcharts.com/adapters/mootools-adapter.js</li>
+            <li>http://code.highcharts.com/adapters/mootools-adapter.src.js</li>
+            <li>http://code.highcharts.com/adapters/prototype-adapter.js</li>
+            <li>http://code.highcharts.com/adapters/prototype-adapter.src.js</li>
+        </ul>
 
-(function () {
+        <h4>Specific version</h4>
+        <p>You'll find a specific Highcharts version by appending the version number to the root level:</p>
+        <ul>
+            <li>http://code.highcharts.com/2.2.4/highcharts.js</li>
+            <li>http://code.highcharts.com/2.2.4/modules/exporting.js</li>
+            <li>http://code.highcharts.com/2.2.4/highcharts-more.js</li>
+            <li>http://code.highcharts.com/2.2.4/adapters/mootools-adapter.js</li>
+        </ul>
 
-var win = window,
-	doc = document,
-	mooVersion = win.MooTools.version.substring(0, 3), // Get the first three characters of the version number
-	legacy = mooVersion === '1.2' || mooVersion === '1.1', // 1.1 && 1.2 considered legacy, 1.3 is not.
-	legacyEvent = legacy || mooVersion === '1.3', // In versions 1.1 - 1.3 the event class is named Event, in newer versions it is named DOMEvent.
-	$extend = win.$extend || function () {
-		return Object.append.apply(Object, arguments);
-	};
+        <h4>Truncated versions</h4>
+        <p>By truncating the version number you'll be able to load the latest stable release within that
+        major version number. For example, <strong>2.2</strong> points to the latest stable 2.2.x, but when
+        2.3 or 3.0 is released, you will still load the latest release of 2.2.</p>
+        <ul>
+            <li>http://code.highcharts.com/2.2/highcharts.js</li>
+            <li>http://code.highcharts.com/2.2/highcharts-more.js</li>
+            <li>http://code.highcharts.com/2.2/modules/exporting.js</li>
+            <li>http://code.highcharts.com/2.2/adapters/mootools-adapter.js</li>
+        </ul>
 
-win.HighchartsAdapter = {
-	/**
-	 * Initialize the adapter. This is run once as Highcharts is first run.
-	 * @param {Object} pathAnim The helper object to do animations across adapters.
-	 */
-	init: function (pathAnim) {
-		var fxProto = Fx.prototype,
-			fxStart = fxProto.start,
-			morphProto = Fx.Morph.prototype,
-			morphCompute = morphProto.compute;
 
-		// override Fx.start to allow animation of SVG element wrappers
-		/*jslint unparam: true*//* allow unused parameters in fx functions */
-		fxProto.start = function (from, to) {
-			var fx = this,
-				elem = fx.element;
+        <h2>Highstock</h2>
+        <p>Highstock files are available under the <strong>/stock</strong> subfolder, with the same folder
+            structure as above.</p>
 
-			// special for animating paths
-			if (from.d) {
-				//this.fromD = this.element.d.split(' ');
-				fx.paths = pathAnim.init(
-					elem,
-					elem.d,
-					fx.toD
-				);
-			}
-			fxStart.apply(fx, arguments);
+        <h4>Latest stable</h4>
+        <p>The latest stable versjon of Highstock is served from code.highcharts.com/stock:</p>
+        <ul>
+            <li>http://code.highcharts.com/stock/highstock.js</li>
+            <li>http://code.highcharts.com/stock/highstock.src.js</li>
+            <li>http://code.highcharts.com/stock/highcharts-more.js</li>
+            <li>http://code.highcharts.com/stock/highcharts-more.src.js</li>
+            <li>http://code.highcharts.com/stock/modules/exporting.js</li>
+            <li>http://code.highcharts.com/stock/modules/exporting.src.js</li>
+            <li>http://code.highcharts.com/stock/adapters/mootools-adapter.js</li>
+            <li>http://code.highcharts.com/stock/adapters/mootools-adapter.src.js</li>
+            <li>http://code.highcharts.com/stock/adapters/prototype-adapter.js</li>
+            <li>http://code.highcharts.com/stock/adapters/prototype-adapter.src.js</li>
+        </ul>
 
-			return this; // chainable
-		};
+        <h4>Specific version</h4>
+        <p>You'll find a specific Highcharts version by appending the version number to the /stock folder:</p>
+        <ul>
+            <li>http://code.highcharts.com/stock/1.2.5/highstock.js</li>
+            <li>http://code.highcharts.com/stock/1.2.5/highcharts-more.js</li>
+            <li>http://code.highcharts.com/stock/1.2.5/modules/exporting.js</li>
+            <li>http://code.highcharts.com/stock/1.2.5/adapters/mootools-adapter.js</li>
+        </ul>
 
-		// override Fx.step to allow animation of SVG element wrappers
-		morphProto.compute = function (from, to, delta) {
-			var fx = this,
-				paths = fx.paths;
+        <h4>Truncated versions</h4>
+        <ul>
+            <li>http://code.highcharts.com/stock/1.2/highstock.js</li>
+            <li>http://code.highcharts.com/stock/1.2/highcharts-more.js</li>
+            <li>http://code.highcharts.com/stock/1.2/modules/exporting.js</li>
+            <li>http://code.highcharts.com/stock/1.2/adapters/mootools-adapter.js</li>
+        </ul>
 
-			if (paths) {
-				fx.element.attr(
-					'd',
-					pathAnim.step(paths[0], paths[1], delta, fx.toD)
-				);
-			} else {
-				return morphCompute.apply(fx, arguments);
-			}
-		};
-		/*jslint unparam: false*/
-	},
-	
-	/**
-	 * Run a general method on the framework, following jQuery syntax
-	 * @param {Object} el The HTML element
-	 * @param {String} method Which method to run on the wrapped element
-	 */
-	adapterRun: function (el, method) {
-		
-		// This currently works for getting inner width and height. If adding
-		// more methods later, we need a conditional implementation for each.
-		if (method === 'width' || method === 'height') {
-			return parseInt(document.id(el).getStyle(method), 10);
-		}
-	},
 
-	/**
-	 * Downloads a script and executes a callback when done.
-	 * @param {String} scriptLocation
-	 * @param {Function} callback
-	 */
-	getScript: function (scriptLocation, callback) {
-		// We cannot assume that Assets class from mootools-more is available so instead insert a script tag to download script.
-		var head = doc.getElementsByTagName('head')[0];
-		var script = doc.createElement('script');
 
-		script.type = 'text/javascript';
-		script.src = scriptLocation;
-		script.onload = callback;
 
-		head.appendChild(script);
-	},
+        <h2>Latest development from GitHub</h2>
+        <p>The file path can be pointed to a specific branch, commit or tag in
+            <a href="https://github.com/highslide-software/highcharts.com/">our GitHub repo</a>.
+            Both Highcharts and Highstock share the same repo, so you'll find highcharts.src.js
+            and highstock.src.js on the same level.</p>
 
-	/**
-	 * Animate a HTML element or SVG element wrapper
-	 * @param {Object} el
-	 * @param {Object} params
-	 * @param {Object} options jQuery-like animation options: duration, easing, callback
-	 */
-	animate: function (el, params, options) {
-		var isSVGElement = el.attr,
-			effect,
-			complete = options && options.complete;
+        <h4>Branch: "master"</h4>
+        <ul>
+            <li>http://github.highcharts.com/master/highcharts.src.js</li>
+            <li>http://github.highcharts.com/master/highcharts-more.js</li>
+            <li>http://github.highcharts.com/master/highstock.src.js</li>
+            <li>http://github.highcharts.com/master/modules/exporting.src.js</li>
+            <li>http://github.highcharts.com/master/adapters/mootools-adapter.src.js</li>
+            <li>http://github.highcharts.com/master/adapters/prototype-adapter.src.js</li>
+        </ul>
 
-		if (isSVGElement && !el.setStyle) {
-			// add setStyle and getStyle methods for internal use in Moo
-			el.getStyle = el.attr;
-			el.setStyle = function () { // property value is given as array in Moo - break it down
-				var args = arguments;
-				this.attr.call(this, args[0], args[1][0]);
-			};
-			// dirty hack to trick Moo into handling el as an element wrapper
-			el.$family = function () { return true; };
-			el.getComputedStyle = function () {
-				return el.element.getComputedStyle.apply(el.element, arguments);
-			};
-		}
+        <h4>Specific commit: "efed5f14f7"</h4>
+        <ul>
+            <li>http://github.highcharts.com/efed5f14f7/highcharts.src.js</li>
+            <li>http://github.highcharts.com/efed5f14f7/highstock.src.js</li>
+            <li>http://github.highcharts.com/efed5f14f7/highcharts-more.js</li>
+            <li>http://github.highcharts.com/efed5f14f7/modules/exporting.src.js</li>
+            <li>http://github.highcharts.com/efed5f14f7/adapters/mootools-adapter.src.js</li>
+            <li>http://github.highcharts.com/efed5f14f7/adapters/prototype-adapter.src.js</li>
+        </ul>
 
-		// stop running animations
-		win.HighchartsAdapter.stop(el);
+        <h4>Tag: "v2.0.0"</h4>
+        <p>See <a href="https://github.com/highslide-software/highcharts.com/tags">the available tags</a>
+            on GitHub.</p>
+        <ul>
+            <li>http://github.highcharts.com/v2.2.0/highcharts.src.js</li>
+            <li>http://github.highcharts.com/v2.2.0/highstock.src.js</li>
+            <li>http://github.highcharts.com/v2.2.0/highcharts-more.js</li>
+            <li>http://github.highcharts.com/v2.2.0/modules/exporting.src.js</li>
+            <li>http://github.highcharts.com/v2.2.0/adapters/mootools-adapter.src.js</li>
+            <li>http://github.highcharts.com/v2.2.0/adapters/prototype-adapter.src.js</li>
+        </ul>
 
-		// define and run the effect
-		effect = new Fx.Morph(
-			isSVGElement ? el : document.id(el),
-			$extend({
-				transition: Fx.Transitions.Quad.easeInOut
-			}, options)
-		);
 
-		// Make sure that the element reference is set when animating svg elements
-		if (isSVGElement) {
-			effect.element = el;
-		}
-
-		// special treatment for paths
-		if (params.d) {
-			effect.toD = params.d;
-		}
-
-		// jQuery-like events
-		if (complete) {
-			effect.addEvent('complete', complete);
-		}
-
-		// run
-		effect.start(params);
-
-		// record for use in stop method
-		el.fx = effect;
-	},
-
-	/**
-	 * MooTool's each function
-	 *
-	 */
-	each: function (arr, fn) {
-		return legacy ?
-			$each(arr, fn) :
-			Array.each(arr, fn);
-	},
-
-	/**
-	 * Map an array
-	 * @param {Array} arr
-	 * @param {Function} fn
-	 */
-	map: function (arr, fn) {
-		return arr.map(fn);
-	},
-
-	/**
-	 * Grep or filter an array
-	 * @param {Array} arr
-	 * @param {Function} fn
-	 */
-	grep: function (arr, fn) {
-		return arr.filter(fn);
-	},
-	
-	/**
-	 * Return the index of an item in an array, or -1 if not matched
-	 */
-	inArray: function (item, arr, from) {
-		return arr ? arr.indexOf(item, from) : -1;
-	},
-
-	/**
-	 * Get the offset of an element relative to the top left corner of the web page
-	 */
-	offset: function (el) {
-		var offsets = el.getPosition(); // #1496
-		return {
-			left: offsets.x,
-			top: offsets.y
-		};
-	},
-
-	/**
-	 * Extends an object with Events, if its not done
-	 */
-	extendWithEvents: function (el) {
-		// if the addEvent method is not defined, el is a custom Highcharts object
-		// like series or point
-		if (!el.addEvent) {
-			if (el.nodeName) {
-				el = document.id(el); // a dynamically generated node
-			} else {
-				$extend(el, new Events()); // a custom object
-			}
-		}
-	},
-
-	/**
-	 * Add an event listener
-	 * @param {Object} el HTML element or custom object
-	 * @param {String} type Event type
-	 * @param {Function} fn Event handler
-	 */
-	addEvent: function (el, type, fn) {
-		if (typeof type === 'string') { // chart broke due to el being string, type function
-
-			if (type === 'unload') { // Moo self destructs before custom unload events
-				type = 'beforeunload';
-			}
-
-			win.HighchartsAdapter.extendWithEvents(el);
-
-			el.addEvent(type, fn);
-		}
-	},
-
-	removeEvent: function (el, type, fn) {
-		if (typeof el === 'string') {
-			// el.removeEvents below apperantly calls this method again. Do not quite understand why, so for now just bail out.
-			return;
-		}
-		
-		if (el.addEvent) { // If el doesn't have an addEvent method, there are no events to remove
-			if (type) {
-				if (type === 'unload') { // Moo self destructs before custom unload events
-					type = 'beforeunload';
-				}
-	
-				if (fn) {
-					el.removeEvent(type, fn);
-				} else if (el.removeEvents) { // #958
-					el.removeEvents(type);
-				}
-			} else {
-				el.removeEvents();
-			}
-		}
-	},
-
-	fireEvent: function (el, event, eventArguments, defaultFunction) {
-		var eventArgs = {
-			type: event,
-			target: el
-		};
-		// create an event object that keeps all functions
-		event = legacyEvent ? new Event(eventArgs) : new DOMEvent(eventArgs);
-		event = $extend(event, eventArguments);
-
-		// When running an event on the Chart.prototype, MooTools nests the target in event.event
-		if (!event.target && event.event) {
-			event.target = event.event.target;
-		}
-
-		// override the preventDefault function to be able to use
-		// this for custom events
-		event.preventDefault = function () {
-			defaultFunction = null;
-		};
-		// if fireEvent is not available on the object, there hasn't been added
-		// any events to it above
-		if (el.fireEvent) {
-			el.fireEvent(event.type, event);
-		}
-
-		// fire the default if it is passed and it is not prevented above
-		if (defaultFunction) {
-			defaultFunction(event);
-		}
-	},
-	
-	/**
-	 * Set back e.pageX and e.pageY that MooTools has abstracted away. #1165, #1346.
-	 */
-	washMouseEvent: function (e) {
-		if (e.page) {
-			e.pageX = e.page.x;
-			e.pageY = e.page.y;
-		}
-		return e;
-	},
-
-	/**
-	 * Stop running animations on the object
-	 */
-	stop: function (el) {
-		if (el.fx) {
-			el.fx.cancel();
-		}
-	}
-};
-
-}());
+    </body>
+</html>
